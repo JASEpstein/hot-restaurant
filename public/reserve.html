@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Restaurant Caliente - Rerserve Your Spot</title>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.0.min.js"
+      integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="text-center">
+          <i class="fas fa-pepper-hot"></i> Restaurante Caliente
+        </h1>
+        <hr />
+        <h2 class="text-center">Make your reservation</h2>
+        <br />
+        <div class="text-center">
+          <a href="/tables"
+            ><button class="btn btn-lg btn-primary">
+              <i class="fas fa-utensil-spoon"></i> View Tables
+            </button></a
+          >
+          <a href="/"
+            ><button class="btn btn-lg btn-default">
+              <i class="fa fa-home"></i></button
+          ></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              Book Your Reservation
+            </div>
+            <div class="card-body">
+              <form role="form">
+                <div class="form-group">
+                  <label for="reservation-name">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reservation-name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="reservation-phone">Phone Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reservation-phone"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="reservation-email">Email</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reservation-email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="reservation-unique-id">Unique ID</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="reservation-unique-id"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <div class="container">
+          <p>
+            <a href="/api/tables">API Table Link</a> |
+            <a href="/api/waitlist">API Wait List</a>
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+<script>
+  $(".submit").on("click", function(event) {
+    event.preventDefault();
+
+    var reservation = {
+      name: $("#reservation-name").val().trim(),
+      phoneNumber: $("#reservation-phone").val().trim(),
+      email: $("#reservation-email").val().trim(),
+      uniqueId: $("#reservation-unique-id").val().trim()
+    };
+
+    $.post("/api/???", reservation, function(data) {
+      if (data) {
+        alert("Reservation booked!");
+      } else {
+        alert("The waiting is the hardest part.");
+      }
+
+      // reset the form values...
+      $("#reservation-name").val("");
+      $("#reservation-phone").val("");
+      $("#reservation-email").val("");
+      $("#reservation-unique-id").val("");
+    });
+  });
+</script>
