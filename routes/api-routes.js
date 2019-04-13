@@ -31,11 +31,9 @@ module.exports = function(app) {
     app.post("/api/reservations", function(req, res) {
         var newReservation = req.body;
 
-        console.log(newReservation);
-
         reservations.push(newReservation);
 
-        if (reservations < 5) {
+        if (reservations.length < 5) {
             res.json(true);
         } else {
             res.json(false);

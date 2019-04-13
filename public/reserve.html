@@ -117,6 +117,7 @@
   $(".submit").on("click", function(event) {
     event.preventDefault();
 
+
     var reservation = {
       name: $("#reservation-name").val().trim(),
       phoneNumber: $("#reservation-phone").val().trim(),
@@ -124,7 +125,8 @@
       uniqueId: $("#reservation-unique-id").val().trim()
     };
 
-    $.post("/api/reservations", function(data) {
+    $.post("/api/reservations", reservation, function(data) {
+
       if (data) {
         alert("Reservation booked!");
       } else {
