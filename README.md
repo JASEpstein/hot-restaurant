@@ -1,10 +1,8 @@
 # Hot Restaurant App
-
 ***
 
 ## Description:
 ### This is an app for finding a table at the hottest Mexican restaurant in town, Restaurante Caliente.
-
 ***
 
 ## Collaborators:
@@ -13,7 +11,6 @@
 * Kelsey Gibbs
 * Katie Brasfield
 * Jamie Epstein
-
 ***
 
 ## Technologies:
@@ -22,7 +19,6 @@
 * Bootstrap
 * Node.js
 * Express
-
 ***
 
 ## Link to the site:
