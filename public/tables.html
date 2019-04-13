@@ -93,25 +93,37 @@
 
   <script>
     function getTables() {
-      $.ajax({ url: "/api/???", method: "GET" }).then(function(tData) {
-        var table = $("<li class='list-group-item mt-4'>");
-        table.append(
-          $("<h2>").text("Table #" + (i + 1)),
-          $("<hr>"),
-          $("<h2>").text("ID: " + tData[i].uniqueId),
-          $("<h2>").text("Name: " + tData[i].name),
-          $("<h2>").text("Email: " + tData[i].email),
-          $("<h2>").text("Phone: " + tData[i].phoneNumber)
-        );
+      $.ajax({ url: "/api/tables", method: "GET" }).then(function(tData) {
 
-        tableList.append(table);
+        var tableList = $("#tableList");
+
+        for (var i = 0; i < tData.length; i++) {
+          var table = $("<li class='list-group-item mt-4'>");
+        
+          table.append(
+            $("<h2>").text("Table #" + (i + 1)),
+            $("<hr>"),
+            $("<h2>").text("ID: " + tData[i].uniqueId),
+            $("<h2>").text("Name: " + tData[i].name),
+            $("<h2>").text("Email: " + tData[i].email),
+            $("<h2>").text("Phone: " + tData[i].phoneNumber)
+          );
+
+          tableList.append(table);
+        }
+
+
+        
       });
     }
 
     function getWaitList() {
-      $.ajax({ url: "/api/???", method: "GET" }).then(function(list) {
-        for (var i = 0; i < waitData.length; i++) {
-          var waitList = $("#waitList");
+      $.ajax({ url: "/api/waitlist", method: "GET" }).then(function(list) {
+
+        var waitList = $("#waitList");
+
+        for (var i = 0; i < list.length; i++) {
+          
           var waitItem = $("<li class='list-group-item mt-4'>");
 
           waitItem.append(

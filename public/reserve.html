@@ -124,7 +124,7 @@
       uniqueId: $("#reservation-unique-id").val().trim()
     };
 
-    $.post("/api/???", reservation, function(data) {
+    $.post("/api/reservations", function(data) {
       if (data) {
         alert("Reservation booked!");
       } else {
