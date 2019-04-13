@@ -1,19 +1,44 @@
-var reservations_data = require('../data/reservations.js');
-var tables_data = require('../data/tables.js');
+var reservations = require("./data/reservations.js");
+var path = require("path");
 
-var express = require('express');
-var path = require('path');
+module.exports = function(app) {
 
-var app = express();
-var PORT = 1337;
+    app.get("/api/tables", function (req, res) {
+        var tables = [];
 
-app.get("/api/reservations", function (req, res) {
-    res.sendFile(path.join(__dirname, "../data/reservations.js"));
-});
+        for(var i = 0; i < reservations.length; i++){
+            if(i < 5){
+                tables.push(reservations[i]);
+            }
+        };
 
-app.get("/api/tables", function (req, res) {
-    res.sendFile(path.join(__dirname, "../data/tables.js"));
-});
+        res.json(tables);
+    });
+
+    app.get("/api/waitlist", function (req, res) {
+        var waitlist = [];
+
+        for(var i = 0; i < reservations.length; i++){
+            if(i > 5){
+                waitlist.push(reservations[i]);
+            }
+        };
+        res.json(waitlist);
+    });
 
 
+    
+    app.post("/api/reservations", function(req, res) {
+        var newReservation = req.body;
 
+        console.log(newReservation);
+
+        reservations.push(newReservation);
+
+        if (reservations < 5) {
+            res.json(true);
+        } else {
+            res.json(false);
+        }
+    });
+}
