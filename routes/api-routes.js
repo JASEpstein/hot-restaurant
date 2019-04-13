@@ -1,4 +1,4 @@
-var reservations = require("./data/reservations.js");
+var reservations = require("../data/reservations.js");
 var path = require("path");
 
 module.exports = function(app) {
